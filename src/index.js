@@ -35,56 +35,34 @@
     return true;
   };
 
-module.exports = function solveSudoku(matrix) {
-  const length = matrix.length;
+  const solve = (matrix) => {
+    const length = matrix.length;
 
-  let count = 1; 
-  for (let i = 0; i < length; i++) {
-    for (let j = 0; j < length; j++) {
-      if (matrix[i][j] === 0) {
-        const row = getRow(matrix, i);
-        const column = getCol(matrix, j);
-        const square = getSquare(matrix, i, j);
-        for (let number = 1; number < 10; number++) {
-          if (check(square, row, column, number)) {
-            matrix[i][j] = number;
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        if (matrix[i][j] === 0) {
+          const row = getRow(matrix, i);
+          const column = getCol(matrix, j);
+          const square = getSquare(matrix, i, j);
+          
+          for (let number = 1; number < 10; number++) {
+            if (check(square, row, column, number)) {
+              matrix[i][j] = number;
+
+              if(solve(matrix)) return true;
+              else matrix[i][j] = 0;
+            }
           }
+
+          return false;
         }
       }
     }
-}
-  
+    
+    return true;
+  }
 
-  //console.log(getRow(matrix, 0));
-  //console.log(getCol(matrix, 0));
-  //console.log(getSquare(matrix, 0, 0));
-  /*
-
-  console.log('matrix ' + matrix[0]);
-  console.log('matrix ' + matrix[1]);
-  console.log('matrix ' + matrix[2]);
-  console.log('matrix ' + matrix[3]);
-  console.log('matrix ' + matrix[4]);
-  console.log('matrix ' + matrix[5]);
-  console.log('matrix ' + matrix[6]);
-  console.log('matrix ' + matrix[7]);
-  console.log('matrix ' + matrix[8]);
-*/
-
+module.exports = function solveSudoku(matrix) {
+  solve(matrix);
   return matrix;
 }
-/*
-const initial = [
-  [6, 5, 0, 7, 3, 0, 0, 8, 0],
-  [0, 0, 0, 4, 8, 0, 5, 3, 0],
-  [8, 4, 0, 9, 2, 5, 0, 0, 0],
-  [0, 9, 0, 8, 0, 0, 0, 0, 0],
-  [5, 3, 0, 2, 0, 9, 6, 0, 0],
-  [0, 0, 6, 0, 0, 0, 8, 0, 0],
-  [0, 0, 9, 0, 0, 0, 0, 0, 6],
-  [0, 0, 7, 0, 0, 0, 0, 5, 0],
-  [1, 6, 5, 3, 9, 0, 4, 7, 0]
-];
-const copy = initial.map(r => [...r]);
-solveSudoku(copy);
-*/
