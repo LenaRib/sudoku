@@ -1,7 +1,6 @@
 # Sudoku
 
 ---
-⚠️ DO NOT SUBMIT PRS TO THIS REPO ⚠️
 
 ## Task
 
