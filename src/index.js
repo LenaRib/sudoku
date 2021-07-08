@@ -35,6 +35,7 @@
     return true;
   };
 
+module.exports = function solveSudoku(matrix) {
   const solve = (matrix) => {
     const length = matrix.length;
 
@@ -61,8 +62,7 @@
     
     return true;
   }
-
-module.exports = function solveSudoku(matrix) {
+  
   solve(matrix);
   return matrix;
 }
