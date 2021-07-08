@@ -1,5 +1,4 @@
-
-  
+module.exports = function solveSudoku(matrix) {
   const getRow = (matrix, rowIndex) => {
     const row = [];
     matrix[rowIndex]
@@ -34,8 +33,7 @@
     }
     return true;
   };
-
-module.exports = function solveSudoku(matrix) {
+  
   const solve = (matrix) => {
     const length = matrix.length;
 
@@ -62,7 +60,7 @@ module.exports = function solveSudoku(matrix) {
     
     return true;
   }
-  
+
   solve(matrix);
   return matrix;
 }
